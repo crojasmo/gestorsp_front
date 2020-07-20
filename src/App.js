@@ -1,6 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+ 
+//Bootstrap
+import 'bootstrap/dist/ccs/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 function App() {
   return (
