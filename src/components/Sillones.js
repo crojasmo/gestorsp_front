@@ -16,12 +16,15 @@ class Sillones extends React.Component{
     getsillones() {
         sillonService.viewAll().then(res => {
             this.setState({ sillones: res.data.map(sillon =>
-                <li>{sillon.id}</li>)
+                <li>{[sillon.id,sillon.numero_sillon,sillon.activo,sillon.numero_sala,sillon.fecha_update,sillon.fecha_creacion,sillon.fecha_retirado]}</li>)
             })
         })
     }
 
-    render() {return <ul>{this.state.sillones}</ul>}
+    render() {
+
+        return <ul>{
+        this.state.sillones}</ul>}
 }
 
 export default Sillones;
