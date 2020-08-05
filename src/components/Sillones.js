@@ -5,17 +5,23 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 class Sillones extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {sillones: []};
+      }
 
+    componentDidMount() {
+        this.getsillones()
+    }
     getsillones() {
-        const sillones = sillonService.viewAll().then(res => {
-            return res.data})
-        console.log(sillones)
-        const list = sillones.map(sillon => 
-            <li>{sillon.id}</li>)
-        return list
+        sillonService.viewAll().then(res => {
+            this.setState({ sillones: res.data.map(sillon =>
+                <li>{sillon.id}</li>)
+            })
+        })
     }
 
-    render() {return <ul>{this.getsillones()}</ul>}
+    render() {return <ul>{this.state.sillones}</ul>}
 }
 
 export default Sillones;
