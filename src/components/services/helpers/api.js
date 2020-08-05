@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const endpoints = {
- development: 'gestorsp.herokuapp.com/',
+ development: 'https://gestorsp.herokuapp.com/',
 // development: 'http://localhost:8080',
 };
 

@@ -7,5 +7,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 import Sillones from './components/Sillones';
 
-ReactDOM.render(sillonService.viewSillon(1),document.getElementById('root'));
+ReactDOM.render(
+    <React.StrictMode>
+        <Sillones />
+    </React.StrictMode>,document.getElementById('root'));
 
