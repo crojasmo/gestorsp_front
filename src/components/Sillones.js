@@ -7,24 +7,32 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 class Sillones extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {sillones: []};
-      }
+        this.state = {sillones:[]};
+    }
 
     componentDidMount() {
         this.getsillones()
     }
     getsillones() {
+        var lista=[];
         sillonService.viewAll().then(res => {
-            this.setState({ sillones: res.data.map(sillon =>
-                <li>{[sillon.id,sillon.numero_sillon,sillon.activo,sillon.numero_sala,sillon.fecha_update,sillon.fecha_creacion,sillon.fecha_retirado]}</li>)
+            var lista_sillones=res.data;
+            for (var i in lista_sillones){
+                var sillon=lista_sillones[i];
+                var obj={id:sillon.id,numero:sillon.numero_sillon};
+
+                lista.push(obj);
+            }
+            this.setState({sillones:lista});
             })
-        })
     }
-
     render() {
-
-        return <ul>{
-        this.state.sillones}</ul>}
+        var id=this.state.sillones.map((sillon)=>
+        <li>{sillon.id}</li>);
+        var numero=this.state.sillones.map((sillon)=>
+        <li>{sillon.numero}</li>);
+        return <ul> {id}"Separacion"{numero} </ul> ;
+         }
 }
 
 export default Sillones;
