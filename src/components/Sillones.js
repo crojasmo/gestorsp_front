@@ -20,33 +20,45 @@ class Sillones extends React.Component{
                 <tr class="table">
                     <th>{sillon.id}</th>
                     <td>{sillon.numero_sillon}</td>
-                    <td>{sillon.activo}</td>
                     <td>{sillon.numero_sala}</td>
                     <td>{sillon.fecha_update}</td>
                     <td>{sillon.fecha_creacion}</td>
                     <td>{sillon.fecha_retirado}</td>
+                    <td>
+                        <button class="btn btn-primary">Editar</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger">Eliminar</button>
+                    </td>
+
                 </tr>)
             })
     })
     }
     render() {
 
-        return <table>
-            <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Número Sillón</th>
-                <th scope="col">Esta activo</th>
-                <th scope="col">Número Sala</th>
-                <th scope="col">Ultima actualizacion</th>
-                <th scope="col">Fecha de creación</th>
-                <th scope="col">Fecha de desactivación</th>
-            </tr>
-            </thead>
-            <tbody>
-                {this.state.sillones}
-                </tbody>
-            </table>}
+        return <div class="container">
+            <div class="card col">
+                <table>
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Número Sillón</th>
+                    <th scope="col">Número Sala</th>
+                    <th scope="col">Ultima actualizacion</th>
+                    <th scope="col">Fecha de creación</th>
+                    <th scope="col">Fecha de desactivación</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {this.state.sillones}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        
+            }
 }
 
 export default Sillones;
