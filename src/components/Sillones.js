@@ -8,13 +8,33 @@ class Sillones extends React.Component{
     constructor(props) {
         super(props);
         this.state = {sillones:[]};
+        this.delete = this.delete.bind(this);
     }
+
+    refreshPage() {
+        window.location.reload(false);
+      }
 
     componentDidMount() {
         this.getsillones()
     }
+
+    delete(e) {
+        console.log(e.target.id)
+        var data = {"data": {"motivo": "Sin definir"}}
+        var motivo = prompt("Ingrese Motivo de deshabilitación", "Sin definir")
+        if (motivo === null) return
+        data.data.motivo = motivo
+        
+        let deletePromise = sillonService.deleteSillon(e.target.id, data)
+        deletePromise.then(res => {
+            alert("Sillon deshabilitado")
+            this.refreshPage()
+        })
+         
+        console.log(deletePromise)
+    }
     getsillones() {
-        var lista=[];
         sillonService.viewAll().then(res => {
             this.setState({ sillones: res.data.map(sillon =>
                 <tr class="table">
@@ -23,12 +43,11 @@ class Sillones extends React.Component{
                     <td>{sillon.numero_sala}</td>
                     <td>{sillon.fecha_update}</td>
                     <td>{sillon.fecha_creacion}</td>
-                    <td>{sillon.fecha_retirado}</td>
                     <td>
                         <button class="btn btn-primary">Editar</button>
                     </td>
                     <td>
-                        <button class="btn btn-danger">Eliminar</button>
+                        <button class="btn btn-danger" onClick={this.delete} id={sillon.id}>Eliminar</button>
                     </td>
 
                 </tr>)
@@ -47,7 +66,6 @@ class Sillones extends React.Component{
                     <th scope="col">Número Sala</th>
                     <th scope="col">Ultima actualizacion</th>
                     <th scope="col">Fecha de creación</th>
-                    <th scope="col">Fecha de desactivación</th>
                 </tr>
                 </thead>
                 <tbody>
